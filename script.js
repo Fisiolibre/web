@@ -11,7 +11,7 @@ contactoLink.addEventListener('click', function (e) {
 
     // Esperar 1.5 segundos antes de redirigir a la página de contacto
     setTimeout(function () {
-        window.location.href = "../html-css/contacto.html";  // Redirigir a la página de contacto
+        window.location.href = "html-css/contacto.html";  // Redirigir a la página de contacto
     }, 1500);  // Esperar 1.5 segundos
 });
 
