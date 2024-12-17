@@ -1,0 +1,364 @@
+:root {
+    --primary-color: #0078FF;
+    --text-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+}
+
+body {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+/* Estilos para la pantalla de carga */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #005AC1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;  /* Empieza invisible */
+    visibility: hidden;  
+    transition: opacity 1s ease, visibility 0s 1s;  /* Aparece durante 1.5s */
+}
+
+/* Animación cuando está visible */
+#loading-screen.show {
+    opacity: 1;  /* Aparece de forma suave */
+    visibility: visible;  /* Asegura que el contenedor esté visible cuando se haga el fade-in */
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
+
+/* Animación para el loader */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Animaciones para los elementos */
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Añadir un pequeño retraso a cada sección */
+.hero { animation-delay: 0.5s; }
+.stats { animation-delay: 1s; }
+.book-slider { animation-delay: 1.5s; }
+.features { animation-delay: 2s; }
+.testimonials { animation-delay: 2.5s; }
+.community { animation-delay: 3s; }
+footer { animation-delay: 3.5s; }
+
+/* Animación para el contenido principal */
+.hero, .stats, .book-slider, .features, .testimonials, .community, footer {
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
+    animation-delay: 0.5s; /* Retraso para que se vean de forma escalonada */
+}
+
+.header {
+    padding: 0.8rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgb(0, 0, 0, 0.1);
+    animation: slideInFromTop 1s ease-out forwards;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.logo img {
+    max-width: 20%;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    margin-right: 133px;
+    font-size: 1.2rem;
+    transform: scaleY(0.9);
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s ease;
+    font-size: 1.5rem;
+}
+
+.nav-menu a:hover {
+    opacity: 0.8;
+}
+
+.hero {
+    padding: 4rem 2rem;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 100px;
+    margin-bottom: 7%;
+}
+
+.hero-content {
+    max-width: 50%;
+    font-size: 40px;
+}
+
+.hero-image img {
+    max-width: 100%;
+    margin-right: 70px;
+}
+
+.hero h1 {
+    font-size: 70px;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.cta-button {
+    background-color: #005AC1;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+    text-align: center;
+    background-color: rgb(8, 43, 114);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-item img {
+    max-width: 90%
+}
+
+.stat-item i {
+    font-size: 2rem;
+}
+
+.book-slider {
+    background-color: var(--primary-color);
+    padding: 2rem;
+    text-align: center;
+}
+
+.book-slider h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.books-container {
+    display: flex;
+    overflow: hidden; /* Oculta el scroll */
+    gap: 1rem; /* Espacio entre libros */
+    padding: 1rem;
+    position: relative;
+    margin: auto;
+    width: calc(220px * 6 + 5rem); /* Muestra 6 libros (ancho de cada libro + gap) */
+}
+
+.book-card {
+    flex: 0 0 215px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.5s ease-in-out; /* Efecto suave al deslizar */
+}
+
+.book-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    background-color: rgb(8, 43, 114);
+}
+
+.feature {
+    flex: 1;
+    padding: 1rem;
+    max-width: 300px;
+    margin-left: -250px;
+}
+
+.feature i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.feature img {
+    max-width: 200%
+}
+
+.testimonials {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.testimonial {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.testimonial-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background-color: #FFD700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonial-avatar i {
+    font-size: 3rem;
+    color: #333;
+}
+
+.community {
+    display: flex;
+    /* Usa flexbox para centrar */
+    flex-direction: column;
+    /* Alinea los elementos en una columna */
+    align-items: center;
+    /* Centra horizontalmente */
+    padding: 2rem;
+    /* Añade padding para espaciado */
+    text-align: center;
+    /* Alinea el texto al centro */
+}
+
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.slider-nav {
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.slider-prev {
+    left: 5px;
+}
+
+.slider-next {
+    right: -1px;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .stats,
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+}
